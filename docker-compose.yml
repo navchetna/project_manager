@@ -1,0 +1,58 @@
+version: "3.8"
+services:
+  # frontend:
+  #   container_name: frontend
+  #   build: ./vite
+  #   ports:
+  #     - "5173:5173"
+  #   volumes:
+  #     - node_modules:/vite/node_modules
+  #     - ./vite/src:/app/
+  #   environment:
+  #     CONNECTION_URL: "http://localhost:3010"
+  #   depends_on:
+  #     - backend
+
+  backend:
+    container_name: backend
+    build: ./server
+    ports:
+      - "3010:3010"
+    volumes:
+      - ./server:/app/backend
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: "mongodb://root:secret@db:27017/compose?authSource=admin"
+
+  db:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_PASSWORD=secret
+      - MONGO_INITDB_ROOT_USERNAME=root
+    ports:
+      - "27017:27017"
+    volumes:
+      - dbs:/var/lib/mysql
+    
+
+  prisma-studio:
+    links:
+      - db
+    depends_on:
+      - db
+    build:
+      context: ./prisma
+      dockerfile: Dockerfile
+    container_name: prisma-studio
+    ports:
+      - "5555:5555"
+    volumes:
+      - ./prisma:/app/prisma
+      - node_modules:/prisma/node_modules
+    environment:
+      DATABASE_URL: "mongodb://root:secret@db:27017/compose?authSource=admin"
+
+volumes:
+  dbs:
+  node_modules:

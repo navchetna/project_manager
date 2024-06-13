@@ -1,0 +1,72 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+
+
+generator client {
+  provider = "prisma-client-py"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model College {
+  college_id      BigInt @id @default(autoincrement())
+  college_name    String
+  location        String
+  students        Student[]
+}
+
+model Enterprise {
+  enterprise_id   BigInt  @id @default(autoincrement())
+  enterprise_name String
+  industry        String
+  mentors         Mentor[]
+}
+
+model Student {
+  student_id  BigInt  @id @default(autoincrement())
+  first_name  String
+  last_name   String
+  email       String @unique
+  usn         String @unique
+  department  String
+  project   Project @relation(fields: [project_id], references: [project_id])
+  project_id  BigInt
+  college College @relation(fields: [college_id], references: [college_id])
+  college_id  BigInt
+}
+
+model Mentor {
+  mentor_id    BigInt     @id @default(autoincrement())
+  first_name   String
+  last_name    String
+  email        String     @unique
+  enterprise   Enterprise @relation(fields: [enterprise_id], references: [enterprise_id])
+  enterprise_id BigInt
+  projects     Project[]
+}
+
+model Project {
+  project_id   BigInt  @id @default(autoincrement())
+  project_name String
+  description  String
+  category     String
+  mentor       Mentor  @relation(fields: [mentor_id], references: [mentor_id])
+  mentor_id    BigInt
+  students     Student[]
+  tasks        Task[]
+}
+
+model Task {
+  task_id    BigInt  @id @default(autoincrement())
+  description String
+  completed  Boolean
+  project    Project @relation(fields: [project_id], references: [project_id])
+  project_id BigInt
+}
