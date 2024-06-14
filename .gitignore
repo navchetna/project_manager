@@ -27,3 +27,4 @@ dist-ssr
 *.sw?
 *.test.*
 venv
+__pycache__
