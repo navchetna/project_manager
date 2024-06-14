@@ -7,12 +7,13 @@
 
 
 generator client {
-  provider = "prisma-client-py"
+  provider  = "prisma-client-py"
+  interface = "asyncio"
 }
 
 datasource db {
   provider = "mysql"
-  url      = env("DATABASE_URL")
+  url      = "mysql://root:vik@127.0.0.1:33061/project_manager"
 }
 
 model College {
@@ -29,27 +30,14 @@ model Enterprise {
   mentors         Mentor[]
 }
 
-model Student {
-  student_id  BigInt  @id @default(autoincrement())
-  first_name  String
-  last_name   String
-  email       String @unique
-  usn         String @unique
-  department  String
-  project   Project @relation(fields: [project_id], references: [project_id])
-  project_id  BigInt
-  college College @relation(fields: [college_id], references: [college_id])
-  college_id  BigInt
-}
-
 model Mentor {
-  mentor_id    BigInt     @id @default(autoincrement())
-  first_name   String
-  last_name    String
-  email        String     @unique
-  enterprise   Enterprise @relation(fields: [enterprise_id], references: [enterprise_id])
+  mentor_id     BigInt     @id @default(autoincrement())
+  first_name    String
+  last_name     String
+  email         String     @unique
+  enterprise    Enterprise @relation(fields: [enterprise_id], references: [enterprise_id])
   enterprise_id BigInt
-  projects     Project[]
+  projects      Project[]
 }
 
 model Project {
@@ -63,10 +51,23 @@ model Project {
   tasks        Task[]
 }
 
+model Student {
+  student_id  BigInt  @id @default(autoincrement())
+  first_name  String
+  last_name   String
+  email       String @unique
+  usn         String @unique
+  department  String
+  project     Project @relation(fields: [project_id], references: [project_id])
+  project_id  BigInt
+  college     College @relation(fields: [college_id], references: [college_id])
+  college_id  BigInt
+}
+
 model Task {
-  task_id    BigInt  @id @default(autoincrement())
+  task_id     BigInt  @id @default(autoincrement())
   description String
-  completed  Boolean
-  project    Project @relation(fields: [project_id], references: [project_id])
-  project_id BigInt
+  completed   Boolean
+  project     Project @relation(fields: [project_id], references: [project_id])
+  project_id  BigInt
 }
