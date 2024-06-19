@@ -14,15 +14,13 @@ import { Layout } from "antd";
 import TableBasic from "./components/Tables/TableBasic";
 import TableAdvancedWithProviders from "./components/Tables/TableAdvanced";
 // import VideoPlayer from "./components/VideoPlayer";
-import { writeData } from "./actions/writeData";
 
 function App() {
-  const handleCreateData = () => {};
 
   return (
     <>
       <div>
-        {/* <Layout1 /> */}
+        <Layout1 />
         {/* <Layout2 /> */}
         {/* <Layout3 /> */}
         {/* <Navbar
@@ -32,7 +30,7 @@ function App() {
         /> */}
         {/* <Sidebar sidebarItems={SidebarItemsConfig.sidebarItems} /> */}
         {/* <TableAdvancedWithProviders /> */}
-        <TableBasic></TableBasic>
+        {/* <TableBasic></TableBasic> */}
         {/* <VideoPlayer videoURL={"https://www.youtube.com/watch?v=Tk5bqlb5F4M"} /> */}
         {/* <FormLayout /> */}
       </div>
