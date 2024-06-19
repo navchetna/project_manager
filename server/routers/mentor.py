@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from prisma import Prisma
-from dependecies import get_prisma
+from utils.dependencies import get_prisma
 from schemas.mentor import MentorCreate, MentorRead
 
 router = APIRouter()

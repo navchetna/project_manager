@@ -3,7 +3,7 @@ import os
 # Templates for the generated code
 ROUTER_TEMPLATE = '''from fastapi import APIRouter, Depends, HTTPException
 from prisma import Prisma
-from dependencies import get_prisma
+from utils.dependencies import get_prisma
 from schemas.{object_name_snake} import {object_name_pascal}Create, {object_name_pascal}Read
 
 router = APIRouter()
@@ -89,11 +89,11 @@ def write_to_file(filepath: str, content: str):
         file.write(content)
 
 # Example usage
-enterprise_schema = '''model testModel {
+new_schema = '''model testModel {
   enterprise_id   BigInt  @id @default(autoincrement())
   enterprise_name String
   industry        String
   mentors         Mentor[]
 }'''
 
-generate_code(enterprise_schema)
+generate_code(new_schema)

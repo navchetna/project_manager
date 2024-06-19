@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from routers import college, enterprise, mentor, project, student, task
+from utils.includeRouters import include_all_routers
 
 import os
 from dotenv import load_dotenv
@@ -10,7 +11,6 @@ from prisma import Prisma
 app = FastAPI()
 
 prisma = Prisma()
-# prisma.connect()
 
 origins = ["*"]
 
@@ -31,9 +31,5 @@ async def startup():
 async def shutdown():
     await prisma.disconnect()
 
-app.include_router(college.router)
-app.include_router(enterprise.router)
-app.include_router(mentor.router)
-app.include_router(project.router)
-app.include_router(student.router)
-app.include_router(task.router)
+# Dynamically include all routers from the routers directory
+include_all_routers(app, 'routers')
