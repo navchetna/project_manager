@@ -14,13 +14,14 @@ import { Layout } from "antd";
 import TableBasic from "./components/Tables/TableBasic";
 import TableAdvancedWithProviders from "./components/Tables/TableAdvanced";
 // import VideoPlayer from "./components/VideoPlayer";
+import MainLayout from "./components/custom/MainLayout"
 
 function App() {
 
   return (
     <>
       <div>
-        <Layout1 />
+        <MainLayout />
         {/* <Layout2 /> */}
         {/* <Layout3 /> */}
         {/* <Navbar

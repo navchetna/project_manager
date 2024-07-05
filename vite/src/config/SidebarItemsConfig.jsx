@@ -16,21 +16,11 @@ function getItem(label, key, icon, children) {
 }
 
 const sidebarItems = [
-  getItem("Profile ", "1", <PieChartOutlined />),
-  getItem("Presentation", "2", <DesktopOutlined />),
-  getItem("Users", "sub1", <UserOutlined />, [
-    getItem("Tom", "3"),
-    getItem("Bill", "4"),
-    getItem("Alex", "5"),
-  ]),
-  getItem("Teams", "sub2", <TeamOutlined />, [
-    getItem("Team 1", "6"),
-    getItem("Team 2", "8"),
-  ]),
-  getItem("Files", "9", <FileOutlined />, [
-    getItem("File 1", "10"),
-    getItem("File 2", "11"),
-  ]),
+  getItem("Students", "1", <PieChartOutlined />),
+  getItem("Mentors", "2", <FileOutlined />),
+  getItem("Enterprises", "3", <PieChartOutlined />),
+  getItem("Colleges", "4", <TeamOutlined />),
+  getItem("Edit Entities", "5", <UserOutlined />),
 ];
 
 export default { sidebarItems };

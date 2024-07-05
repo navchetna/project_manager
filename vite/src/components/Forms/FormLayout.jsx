@@ -34,25 +34,18 @@ const FormLayout = () => {
       >
         Form disabled
       </Checkbox> */}
-      <Form
-        // labelCol={{
-        //   span: 4,
-        // }}
-        // wrapperCol={{
-        //   span: 14,
-        // }}
+      {/* <Form
         layout="horizontal"
         disabled={componentDisabled}
         style={{
           padding: "2rem",
           display: "flex",
           flexDirection: "column",
-          maxWidth: "100%",
-          minWidth: "20rem",
+          width: "auto",
           backgroundColor: "white",
         }}
-      >
-        <Form.Item label="Checkbox" name="disabled" valuePropName="checked">
+      > */}
+        {/* <Form.Item label="Checkbox" name="disabled" valuePropName="checked">
           <Checkbox>Checkbox</Checkbox>
         </Form.Item>
         <Form.Item label="Radio">
@@ -60,11 +53,11 @@ const FormLayout = () => {
             <Radio value="apple"> Apple </Radio>
             <Radio value="pear"> Pear </Radio>
           </Radio.Group>
-        </Form.Item>
+        </Form.Item> */}
         <Form.Item label="Input">
           <Input />
         </Form.Item>
-        <Form.Item label="Select">
+        {/* <Form.Item label="Select">
           <Select>
             <Select.Option value="demo">Demo</Select.Option>
           </Select>
@@ -148,8 +141,8 @@ const FormLayout = () => {
         </Form.Item>
         <Form.Item label="ColorPicker">
           <ColorPicker />
-        </Form.Item>
-      </Form>
+        </Form.Item> */}
+      {/* </Form> */}
     </>
   );
 };
